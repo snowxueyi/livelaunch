@@ -154,12 +154,12 @@
               :value="item.value">
               <div class="flex align-center">
                 <img
-                  style="width: 42px; height: 42px"
+                  style="width: 42px; height: 42px;border-radius:50%;"
                   class="mr12"
                   src="@/assets/goods-extension.png" />
                   <div>
                     <p class="hight20 lineh30 color6f font400 mb3">钟凯文</p>
-                    <p class="hight20 lineh30 colore7 font400">ID：23349345345</p>
+                    <p class="hight20 lineh30 color9b font400">ID：23349345345</p>
                   </div>
               </div>
             </el-option>
@@ -177,14 +177,16 @@
           </template>
         </el-table-column>
       </el-table>
+      <new-ad-group :visible="addVisible" @hide="addVisible=false" />
     </div>
 </template>
 
 <script>
+import NewAdGroup from '@/components/new-ad-group.vue'
 export default {
-  name: 'plan',
+  name: 'step1',
   components: {
-
+    NewAdGroup
   },
   data(){
     return{
@@ -193,12 +195,13 @@ export default {
       list:{
         data:[{title:'',goods:[{},{}]}],
         loading:false
-      }
+      },
+      addVisible:false,
     }
   },
   methods:{
     handleAddAccount(){
-
+      this.addVisible=true;
     }
   }
 }

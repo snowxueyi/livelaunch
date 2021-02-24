@@ -6,21 +6,24 @@
       <div :class="`step step-3 flex flex1 mll20 align-center justify-center ${active==2?'active':''}`"><div class="circle mr15">3</div>素材</div>
       <div :class="`step step-4 flex flex1 mll20 align-center justify-center ${active==3?'active':''}`"><div class="circle mr15x">4</div>开始投放</div>
     </div>
-    <step1 />
+    <step1 v-if="active==0"/>
+    <step2 v-if="active==1" />
   </div>
 </template>
 
 <script>
 import Step1 from '@/views/newPlan/components/step1.vue'
+import Step2 from '@/views/newPlan/components/step2.vue'
 
 export default {
   name: 'plan',
   components: {
     Step1,
+    Step2
   },
   data(){
     return{
-      active:0,
+      active:1,
     }
   },
   methods:{
