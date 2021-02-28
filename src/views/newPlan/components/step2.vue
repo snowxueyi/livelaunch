@@ -199,6 +199,11 @@
         </el-form-item>
       </el-form>
     </div>
+    <div class="bttomBtn flex justify-center mt35">
+      <el-button @click="handleReset">重置</el-button>
+      <el-button type="primary" @click="toNext(0)">上一步</el-button>
+      <el-button type="primary" @click="toNext(2)">下一步</el-button>
+    </div>
   </div>
 </template>
 
@@ -216,6 +221,12 @@ export default {
   methods:{
     handleAddAccount(){
       this.addVisible=true;
+    },
+    toNext(val){
+      this.$emit('switchTab',val)
+    },
+    handleReset(){
+
     }
   }
 }

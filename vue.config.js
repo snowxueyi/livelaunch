@@ -7,7 +7,7 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     disableHostCheck: true,
-    port: 80
+    port: 80,
   },
   css: {
     loaderOptions: {

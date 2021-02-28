@@ -2,7 +2,14 @@
   <div class="step1 bg-write">
       <el-form :model="form1" ref="searchForm" label-position="left" label-width="90px" :inline="true">
         <el-form-item label="投放账号" prop="account">
-          <el-input class="mr20" v-model="form1.account" clearable size="mini" /><el-button size="small" type="primary" plain icon="el-icon-plus" @click="handleAddAccount">新增账号</el-button>
+          <el-select class="mr20" multiple v-model="form1.advertiser">
+            <el-option
+              v-for="item in adList"
+              :key="item.advertiserId"
+              :label="item.advertiserName"
+              :value="item"></el-option>
+          </el-select>
+          <el-button size="small" type="primary" plain icon="el-icon-plus" @click="handleAddAccount">新增账号</el-button>
         </el-form-item>
         <el-row>
           <el-form-item label="投放目标" prop="aim">
@@ -48,8 +55,8 @@
           align="center"
         >
           <template slot-scope="scope">
-            <p>{{scope.row.title}}</p>
-            <p class="font12 color9b">1670822163582984</p>
+            <p>{{scope.row.advertiserName}}</p>
+            <p class="font12 color9b">{{scope.row.advertiserId}}</p>
           </template>
         </el-table-column>
         <el-table-column
@@ -60,8 +67,13 @@
           align="center"
         >
         <template slot-scope="scope">
-            <p>{{scope.row.title}}</p>
-            <p class="font12 color9b">1670822163582984</p>
+            <el-select v-model="scope.row.advisidId">
+              <el-option
+                v-for="item in adGrouopList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"></el-option>
+            </el-select>
           </template></el-table-column>
         <el-table-column
           prop="goods"
@@ -123,8 +135,8 @@
           align="center"
         >
           <template slot-scope="scope">
-            <p>{{scope.row.title}}</p>
-            <p class="font12 color9b">1670822163582984</p>
+            <p>{{scope.row.advertiserName}}</p>
+            <p class="font12 color9b">{{scope.row.advertiserId}}</p>
           </template>
         </el-table-column>
         <el-table-column
@@ -135,8 +147,13 @@
           align="center"
         >
         <template slot-scope="scope">
-            <p>{{scope.row.title}}</p>
-            <p class="font12 color9b">1670822163582984</p>
+            <el-select v-model="scope.row.advisidId">
+              <el-option
+                v-for="item in adGrouopList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"></el-option>
+            </el-select>
           </template></el-table-column>
         <el-table-column
           prop="spec"
@@ -148,7 +165,7 @@
         <template slot-scope="scope">
           <el-select class="goodsSelect" v-model="scope.row.currentGoods" placeholder="请选择">
             <el-option
-              v-for="item in scope.row.goods"
+              v-for="item in iesACount"
               :key="item.value"
               :label="item.label"
               :value="item.value">
@@ -178,11 +195,17 @@
         </el-table-column>
       </el-table>
       <new-ad-group :visible="addVisible" @hide="addVisible=false" />
+      <div class="bttomBtn flex justify-center mt35">
+        <el-button @click="handleReset">重置</el-button>
+        <el-button type="primary" @click="toNext">下一步</el-button>
+      </div>
     </div>
 </template>
 
 <script>
 import NewAdGroup from '@/components/new-ad-group.vue'
+import { getAdGrouopList,getAdList,getAdvertiserGoods,getIesAccount} from '@/api/newPlan'
+
 export default {
   name: 'step1',
   components: {
@@ -197,11 +220,51 @@ export default {
         loading:false
       },
       addVisible:false,
+      adGrouopList:[],
+      adList:[],
+      goods:[]
+    }
+  },
+  mounted(){
+    this.getAdGrouopList()
+    this.getAdList()
+  },
+  watch:{
+    'form1.advertiser'(val){
+      if(val){
+        this.list.data=val;
+        const advertiserIds = val.map((item)=>{item.advertiserId}).join(',')
+        this.getAdvertiserGoods(advertiserIds)
+        this.getIesAccount(advertiserIds)
+      }
     }
   },
   methods:{
+    async getAdGrouopList(){
+      let res= await getAdGrouopList()
+      console.log(res)
+    },
+    async getAdList(){
+      let res= await getAdList()
+      this.adList=res.data||[]
+      console.log(res)
+    },
     handleAddAccount(){
       this.addVisible=true;
+    },
+    async getAdvertiserGoods(val){
+      const res=await getAdvertiserGoods({advertiser_id:val})
+      this.goods = res.data||[]
+    },
+    async getIesAccount(val){
+      const res=await getIesAccount({advertiser_id:val})
+      this.iesACount = res.data||[]
+    },
+    toNext(){
+      this.$emit('switchTab',1)
+    },
+    handleReset(){
+
     }
   }
 }
