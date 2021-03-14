@@ -7,7 +7,7 @@
       <div @click="toTab(3)" :class="`step step-4 flex flex1 mll20 align-center justify-center ${active==3?'active':''}`"><div class="circle mr15">4</div>开始投放</div>
     </div>
     <step1 v-if="active==0" @switchTab="toTab"/>
-    <step2 v-if="active==1" @switchTab="toTab" />
+    <step2 ref="form2" v-if="active==1" @switchTab="toTab" />
     <step3 v-if="active==2" @switchTab="toTab" />
   </div>
 </template>
@@ -28,6 +28,10 @@ export default {
     return{
       active:0,
     }
+  },
+  watch:{
+    active(){
+    },
   },
   methods:{
     handleAddAccount(){

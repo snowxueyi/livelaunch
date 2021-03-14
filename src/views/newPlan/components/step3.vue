@@ -131,13 +131,14 @@
     </div>
     <div class="bttomBtn flex justify-center mt35">
       <el-button @click="handleReset">取消</el-button>
-      <el-button type="primary" @click="toNext(3)">生成计划并投</el-button>
+      <el-button type="primary" @click="handleSave">生成计划并投</el-button>
     </div>
     <creative-temp :visible="addVisible" @hide="addVisible=false" />
   </div>
 </template>
 
 <script>
+import { createAd} from '@/api/newPlan'
 import Creative from '@/components/creative.vue'
 import CreativeTemp from '@/components/creativeTemp.vue'
 
@@ -149,26 +150,31 @@ export default {
       userForm:{},
       budgetForm:{},
       options:[],
-      addVisible:false
+      addVisible:false,
+      form3:{}
     }
   },
   components: {
     Creative,
     CreativeTemp
   },
+  created(){
+    this.form3=Object.assign({},this.$store.state.form2)
+  },
   methods:{
     handleAddAccount(){
       this.addVisible=true;
-    },
-    toNext(val){
-      this.$emit('switchTab',val)
     },
     handleReset(){
 
     },
     saveTemplate(){
       this.addVisible=true;
-    }
+    },
+    async handleSave(){
+      let res= await createAd(this.form3)
+      console.log(res)
+    },
   }
 }
 </script>

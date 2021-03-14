@@ -5,9 +5,21 @@ const resolve = dir => path.resolve(__dirname, dir);
 module.exports = {
   publicPath: './',
   productionSourceMap: false,
+  // devServer: {
+  //   disableHostCheck: true,
+  //   port: 80,
+  // },
   devServer: {
-    disableHostCheck: true,
+    proxy: {
+      '/open_api': {
+        target:'http://ad.oceanengine.com',
+        // target: 'http://ops-test1.kzmall.cc',
+        //target: 'http://ops-test2.kzmall.cc',
+        changeOrigin: true,
+      },
+    },
     port: 80,
+    disableHostCheck: true
   },
   css: {
     loaderOptions: {

@@ -25,7 +25,7 @@
                   <p class="flex align-center justify-center wh115 lineh15">
                     <el-icon class="el-icon-upload"></el-icon>上传封面（必填）
                   </p>
-                  <el-button class="mb22 ml5" type="info" plain>生成/选择封面</el-button>
+                  <el-button class="mb22 ml5" type="info" plain @click="uploadVisible=true">生成/选择封面</el-button>
                 </div>
                 <p class="color9b lineh15" style="width:142px">建议最佳：宽高9:16,720*1280≤尺寸≤1440*2560，支持JPG、PNG等图片格式</p>
               </div>
@@ -38,21 +38,17 @@
       </div>
       </el-tab-pane>
     </el-tabs>
+    <upload-cover :visible="uploadVisible" @hide="uploadVisible=false" />
   </div>
 </template>
 
 <script>
+import UploadCover from '@/components/upload-cover.vue'
+
 export default {
   name: 'new-ad-group',
-  props: {
-    /**
-     * 展示dialog状态
-     */
-    visible: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
+  components: {
+    UploadCover,
   },
   data(){
     return{
@@ -66,7 +62,8 @@ export default {
         name: '2',
         form:{}
       }],
-      tabIndex: 2
+      tabIndex: 2,
+      uploadVisible:false,
     }
   },
   methods: {

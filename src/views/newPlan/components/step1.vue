@@ -105,7 +105,7 @@
               type="primary"
               size="small"
               plain
-              @click="handleDelete(scope.row)"
+              @click="handleDelete(scope.row,scope.$index)"
             >删除</el-button>
           </template>
         </el-table-column>
@@ -189,12 +189,13 @@
               type="primary"
               size="small"
               plain
-              @click="handleDelete(scope.row)"
+              @click="handleDelete(scope.row,scope.$index)"
             >删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <new-ad-group :visible="addVisible" @hide="addVisible=false" />
+      <new-ad-account :visible="accountVisible" @hide="accountVisible=false" />
       <div class="bttomBtn flex justify-center mt35">
         <el-button @click="handleReset">重置</el-button>
         <el-button type="primary" @click="toNext">下一步</el-button>
@@ -204,12 +205,14 @@
 
 <script>
 import NewAdGroup from '@/components/new-ad-group.vue'
+import NewAdAccount from '@/components/new-ad-account.vue'
 import { getAdGrouopList,getAdList,getAdvertiserGoods,getIesAccount} from '@/api/newPlan'
 
 export default {
   name: 'step1',
   components: {
-    NewAdGroup
+    NewAdGroup,
+    NewAdAccount
   },
   data(){
     return{
@@ -222,7 +225,8 @@ export default {
       addVisible:false,
       adGrouopList:[],
       adList:[],
-      goods:[]
+      goods:[],
+      accountVisible:false
     }
   },
   mounted(){
@@ -249,8 +253,11 @@ export default {
       this.adList=res.data||[]
       console.log(res)
     },
+    handleDelete(row,index){
+      this.list.data.splice(index,1)
+    },
     handleAddAccount(){
-      this.addVisible=true;
+      this.accountVisible=true;
     },
     async getAdvertiserGoods(val){
       const res=await getAdvertiserGoods({advertiser_id:val})

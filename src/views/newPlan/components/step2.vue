@@ -39,11 +39,11 @@
             <img class="mr2" style="width:17px;height:17px;" src="@/assets/icon-question.png" alt="">
             <span>地域</span>
           </div>
-          <el-radio-group v-model="userForm.radio">
-            <el-radio-button label="1">不限</el-radio-button>
-            <el-radio-button label="2">按省市</el-radio-button>
-            <el-radio-button label="3">按区县</el-radio-button>
-            <el-radio-button label="4">按商圈</el-radio-button>
+          <el-radio-group v-model="userForm.district">
+            <el-radio-button label="NONE">不限</el-radio-button>
+            <el-radio-button label="CITY">按省市</el-radio-button>
+            <el-radio-button label="COUNTY">按区县</el-radio-button>
+            <el-radio-button label="BUSINESS_DISTRICT">按商圈</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="radio">
@@ -51,10 +51,10 @@
             <img class="mr2" style="width:17px;height:17px;" src="@/assets/icon-question.png" alt="">
             <span>性别</span>
           </div>
-          <el-radio-group v-model="userForm.radio">
-            <el-radio-button label="1">不限</el-radio-button>
-            <el-radio-button label="2">男</el-radio-button>
-            <el-radio-button label="3">女</el-radio-button>
+          <el-radio-group v-model="userForm.gender">
+            <el-radio-button label="NONE">不限</el-radio-button>
+            <el-radio-button label="GENDER_MALE">男</el-radio-button>
+            <el-radio-button label="GENDER_FEMALE">女</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="radio">
@@ -62,13 +62,13 @@
             <img class="mr2" style="width:17px;height:17px;" src="@/assets/icon-question.png" alt="">
             <span>年龄</span>
           </div>
-          <el-radio-group v-model="userForm.radio">
+          <el-radio-group v-model="userForm.age">
             <el-radio-button label="1">不限</el-radio-button>
-            <el-radio-button label="2">18-23</el-radio-button>
-            <el-radio-button label="3">23-30</el-radio-button>
-            <el-radio-button label="3">31-40</el-radio-button>
-            <el-radio-button label="3">41-49</el-radio-button>
-            <el-radio-button label="3">50岁以上</el-radio-button>
+            <el-radio-button label="AGE_BETWEEN_18_23">18-23</el-radio-button>
+            <el-radio-button label="AGE_BETWEEN_24_30">23-30</el-radio-button>
+            <el-radio-button label="AGE_BETWEEN_31_40">31-40</el-radio-button>
+            <el-radio-button label="AGE_BETWEEN_41_49">41-49</el-radio-button>
+            <el-radio-button label="AGE_ABOVE_50">50岁以上</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="radio">
@@ -76,9 +76,9 @@
             <img class="mr2" style="width:17px;height:17px;" src="@/assets/icon-question.png" alt="">
             <span>自定义人群</span>
           </div>
-          <el-radio-group v-model="userForm.radio">
-            <el-radio-button label="1">不限</el-radio-button>
-            <el-radio-button label="2">自定义人群</el-radio-button>
+          <el-radio-group v-model="userForm.interest_action_mode">
+            <el-radio-button label="UNLIMITED">不限</el-radio-button>
+            <el-radio-button label="CUSTOM">自定义人群</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="radio">
@@ -86,10 +86,10 @@
             <img class="mr2" style="width:17px;height:17px;" src="@/assets/icon-question.png" alt="">
             <span>行为兴趣</span>
           </div>
-          <el-radio-group v-model="userForm.radio">
-            <el-radio-button label="1">不限</el-radio-button>
-            <el-radio-button label="2">系统推荐</el-radio-button>
-            <el-radio-button label="3">自定义</el-radio-button>
+          <el-radio-group v-model="userForm.interest_action_mode">
+            <el-radio-button label="UNLIMITED">不限</el-radio-button>
+            <el-radio-button label="CUSTOM">系统推荐</el-radio-button>
+            <el-radio-button label="RECOMMEND3">自定义</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="radio">
@@ -127,11 +127,11 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="平台" prop="radio">
-          <el-radio-group v-model="userForm.radio">
+          <el-radio-group v-model="userForm.platform">
             <el-radio-button label="1">不限</el-radio-button>
-            <el-radio-button label="2">ios</el-radio-button>
-            <el-radio-button label="3">Android</el-radio-button>
-            <el-radio-button label="4">PC</el-radio-button>
+            <el-radio-button label="IOS">ios</el-radio-button>
+            <el-radio-button label="ANDROID">Android</el-radio-button>
+            <el-radio-button label="PC">PC</el-radio-button>
           </el-radio-group>
         </el-form-item>
       </el-form>
@@ -140,9 +140,9 @@
       <h1 class="step2-title">预算与价</h1>
       <el-form :model="budgetForm" label-position="left" label-width="150px" >
         <el-form-item label="投放内容" prop="account">
-          <el-radio-group v-model="budgetForm.radio">
-            <el-radio-button label="1">常规投放</el-radio-button>
-            <el-radio-button label="2">放量投放</el-radio-button>
+          <el-radio-group v-model="budgetForm.smart_bid_type">
+            <el-radio-button label="SMART_BID_CUSTOM">常规投放</el-radio-button>
+            <el-radio-button label="SMART_BID_CONSERVATIVE">放量投放</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="radio">
@@ -155,10 +155,10 @@
             </el-popover>
             <span>竞价策略</span>
           </div>
-          <el-radio-group v-model="budgetForm.radio">
-            <el-radio-button label="1">优先跑量</el-radio-button>
-            <el-radio-button label="2">均衡投放</el-radio-button>
-            <el-radio-button label="3">控制成本上限</el-radio-button>
+          <el-radio-group v-model="budgetForm.flow_control_mode">
+            <el-radio-button label="FLOW_CONTROL_MODE_FAST">优先跑量</el-radio-button>
+            <el-radio-button label="FLOW_CONTROL_MODE_BALANCE">均衡投放</el-radio-button>
+            <el-radio-button label="FLOW_CONTROL_MODE_SMOOTH">控制成本上限</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="预算" prop="accounts">
@@ -172,25 +172,25 @@
           </el-select>
           <el-input style="width:200px;"></el-input>元
         </el-form-item>
-        <el-form-item label="竞价策略" prop="radio">
-          <el-radio-group v-model="budgetForm.radio">
-            <el-radio-button label="1">从今天长期投放</el-radio-button>
-            <el-radio-button label="2">设置开始和结束日期</el-radio-button>
+        <el-form-item label="竞价策略" prop="schedule_type">
+          <el-radio-group v-model="budgetForm.schedule_type">
+            <el-radio-button label="SCHEDULE_FROM_NOW">从今天长期投放</el-radio-button>
+            <el-radio-button label="SCHEDULE_START_END">设置开始和结束日期</el-radio-button>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="投放时段" prop="radio">
-          <el-radio-group v-model="budgetForm.radio">
+        <el-form-item label="投放时段" prop="schedule_time">
+          <el-radio-group v-model="budgetForm.schedule_time">
             <el-radio-button label="1">不限</el-radio-button>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="付费方式" prop="radio">
-          <el-radio-group v-model="budgetForm.radio">
-            <el-radio-button label="1">按展示付费（oCPM）</el-radio-button>
+        <el-form-item label="付费方式" prop="pricing">
+          <el-radio-group v-model="budgetForm.pricing">
+            <el-radio-button label="OCPM">按展示付费（oCPM）</el-radio-button>
             <span class="dark-tips">计划首次投放及其之后三个自然日内将获得超成本赔付保障，您可放心新建计划并投放，详见 oCPM赔付规则</span>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="目标转化出价" prop="radio">
-          <el-input placeholder="输入金额不少于0.1元，不超过10000元"></el-input>元
+        <el-form-item label="目标转化出价" prop="cpa_bid">
+          <el-input style="width:300px;" placeholder="输入金额不少于0.1元，不超过10000元" v-model="budgetForm.cpa_bid"></el-input>元
         </el-form-item>
         <el-form-item label="意见起量" prop="radio">
           <el-radio-group v-model="budgetForm.radio">
@@ -216,6 +216,7 @@ export default {
       userForm:{},
       budgetForm:{},
       options:[],
+      form2:{}
     }
   },
   methods:{
@@ -223,6 +224,9 @@ export default {
       this.addVisible=true;
     },
     toNext(val){
+      const form2=Object.assign({},this.targetForm,this.userForm,this.budgetForm)
+      this.$store.commit('setForm',form2)
+      this.form2=form2;
       this.$emit('switchTab',val)
     },
     handleReset(){

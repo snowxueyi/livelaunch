@@ -26,13 +26,13 @@ export default {
      */
     visible: {
       type: Boolean,
-      required: true,
       default: false,
     },
   },
   data(){
     return{
       form:{},
+      rules:[]
     }
   },
   methods: {

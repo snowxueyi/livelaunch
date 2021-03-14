@@ -43,36 +43,26 @@ export const getIesAccount = parmes => {
   )
 }
 
-//文章状态修改
-export const UpdateStatus = parmes => {
-  return http.post(
-    '/opsmanager/api/saas/dashboard/tyre/community/tweet/reversal',
+// 查询广告计划可用转化id
+export const getConvertQuery = parmes => {
+  return http.get(
+    '//ad.oceanengine.com/open_api/2/tools/ad_convert/query/',
     parmes,
     {
-      'api-protocol': 'http',
-      'Content-Type': 'application/json',
+      token:'202102272102335703',
+      accessToken:'8bf8cf461ae09861ccbdacfdf57f04d1f9e55e0f'
     },
-    true
-  )
-}
-//文章置顶
-export const TopTweet = parmes => {
-  return http.post(
-    '/opsmanager/api/saas/dashboard/tyre/community/tweet/top',
-    parmes,
-    {
-      'api-protocol': 'http',
-    }
   )
 }
 
-//文章分类列表
-export const GetCategoryList = parmes => {
+//创建投放计划
+export const createAd = parmes => {
   return http.post(
-    '/opsmanager/api/saas/dashboard/tyre/community/tweet/categoryList',
+    '//ad.oceanengine.com/open_api/2/ad/create/',
     parmes,
     {
-      'api-protocol': 'http',
+      token:'202102272102335703',
+      accessToken:'8bf8cf461ae09861ccbdacfdf57f04d1f9e55e0f',
       'Content-Type': 'application/json',
     },
     true
