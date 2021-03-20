@@ -24,7 +24,7 @@
             </div>
           </div>
       </div>
-      <div class="flex">
+      <div class="flex space-between">
         <div class="mr20">
           <flow-anlasis />
           <data-analysis />
@@ -137,6 +137,9 @@ export default {
   .date-flow{
     text-align: left;
     margin: 0 50px;
+  }
+  .space-between{
+    justify-content: space-between;
   }
 }
 </style>

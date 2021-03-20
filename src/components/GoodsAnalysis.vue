@@ -110,7 +110,7 @@ export default {
 <style lang="less" scoped>
 .goods-analysis{
   padding: 19px 16px;
-  width: 900px;
+  width: 935px;
   background: #FFFFFF;
   box-shadow: 0px 0px 8px 0px rgba(190, 195, 213, 0.16);
   border-radius: 10px;

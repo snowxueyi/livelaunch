@@ -34,7 +34,7 @@
 <style lang="less" scoped>
 .data-analysis{
   padding: 19px 23px;
-  width: 420px;
+  width: 465px;
   background: #FFFFFF;
   box-shadow: 0px 0px 8px 0px rgba(190, 195, 213, 0.16);
   border-radius: 10px;

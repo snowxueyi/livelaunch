@@ -19,7 +19,7 @@
 </template>
 <style lang="less" scoped>
 .person-info{
-  height: 144px;
+  height: 165px;
   padding: 20px 43px 24px 43px;
   background: #FFFFFF;
   box-shadow: 0px 0px 8px 0px rgba(190, 195, 213, 0.16);

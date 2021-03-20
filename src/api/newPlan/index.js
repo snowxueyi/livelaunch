@@ -68,3 +68,17 @@ export const createAd = parmes => {
     true
   )
 }
+
+//投放计划列表
+export const getPlanList = parmes => {
+  return http.get(
+    '//ad.oceanengine.com/open_api/2/ad/get/',
+    parmes,
+    {
+      token:'202102272102335703',
+      accessToken:'8bf8cf461ae09861ccbdacfdf57f04d1f9e55e0f',
+      'Content-Type': 'application/json',
+    },
+    true
+  )
+}

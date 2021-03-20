@@ -21,7 +21,6 @@
           {{ buttonName }}</el-button>
       </div>
     </div>
-    <hr>
   </div>
 </template>
 
@@ -65,7 +64,7 @@ export default {
 
           fetchLogin(_self.loginForm)
             .then(() => {
-              document.querySelector('body').style.background = '#f0f0f0'
+              document.querySelector('body').style.background = '#fff'
               _self.$router.push('/')
             })
             .catch(err => {
@@ -119,21 +118,12 @@ export default {
 </script>
 
 <style lang="less">
-body {
-  width: 100%;
-  background-size: cover;
-  height: auto;
-}
-
 .login-container {
-  @media screen and (min-width: 1200px) {
-    width: 912px;
-  }
-
+  width: 912px;
   margin: 12% auto 0 auto;
   color: #ffffff;
+  background-color: #fff;
   font-size: 13px;
-
   a {
     color: #fff;
     text-decoration: none;
