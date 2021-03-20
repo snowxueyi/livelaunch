@@ -7,7 +7,10 @@ export default [
   {
     path: '/',
     component: CreatePlan,
-    name: 'plan'
+    name: 'plan',
+    meta: {
+      title: '新建计划',
+    },
   },
   {
     path: '/login',
@@ -19,11 +22,17 @@ export default [
   {
     path: '/live',
     component: Home,
-    name:'live'
+    name:'live',       
+    meta: {
+      title:'直播首页',
+    }
   },
   {
     path: '/plan-list',
     component: PlanList,
-    name:'planList'
+    name:'planList', 
+    meta: {
+      title: '计划管理',
+    }
   }
 ];
